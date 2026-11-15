@@ -31,5 +31,6 @@ En cada etapa se muestra qué siente el cuerpo de la tripulación y qué hacer.
 - `scripts/astronaut.gd`: mueve al astronauta de la cámara de cabina según lo que pasa (fuerza G, radiación, falta de oxígeno)
 - `models/`: modelos 3D en formato `.glb` (cohete, cápsula, Tierra, Luna, astronauta)
 - `docs/`: la versión web ya exportada (es lo que publica GitHub Pages)
+- `INTEGRACION_FIREBASE.md`: cómo conectar la simulación con Firebase
 
 Para abrir el proyecto: instala Godot 4.7.2, abre `project.godot` y presiona F5.
