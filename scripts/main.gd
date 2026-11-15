@@ -157,6 +157,18 @@ var fade_a := 1.0
 var flash_a := 0.0
 
 func _ready() -> void:
+var req = HTTPRequest.new()
+	add_child(req)
+	req.request_completed.connect(func(res, code, headers, body):
+		if code == 200:
+			var j = JSON.parse_string(body.get_string_from_utf8())
+			if j is String: _scenario(j)
+	)
+	var t = Timer.new()
+	t.wait_time = 2.0
+	t.autostart = true
+	t.timeout.connect(func(): req.request("https://thedox-spacehealth-default-rtdb.firebaseio.com/simulation_controls/active_scenario.json"))
+	add_child(t)
 	_build_world()
 	_build_fx()
 	_build_hud()
