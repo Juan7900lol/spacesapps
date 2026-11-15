@@ -165,6 +165,18 @@ func _ready() -> void:
 		_snapshots()
 	if FileAccess.file_exists("res://_pruebas/fps.flag"):
 		_fps_test()
+var req = HTTPRequest.new()
+	add_child(req)
+	req.request_completed.connect(func(res, code, headers, body):
+		if code == 200:
+			var j = JSON.parse_string(body.get_string_from_utf8())
+			if j is String: _scenario(j)
+	)
+	var t = Timer.new()
+	t.wait_time = 2.0
+	t.autostart = true
+	t.timeout.connect(func(): req.request("https://thedox-spacehealth-default-rtdb.firebaseio.com/simulation_controls/active_scenario.json"))
+	add_child(t)
 
 # =====================================================================
 #  CONSTRUCCIÓN
